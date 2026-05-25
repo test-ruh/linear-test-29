@@ -1,0 +1,37 @@
+{
+  "version": "1.0",
+  "jobs": [
+    {
+      "name": "linear-todo-reminder",
+      "enabled": true,
+      "schedule": {
+        "kind": "cron",
+        "expr": "*/30 * * * *",
+        "tz": "UTC"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Check assigned Linear tickets with status exactly Todo and send a Slack DM reminder when any exist.",
+        "timeoutSeconds": 600
+      }
+    },
+    {
+      "name": "linear-todo-daily-report",
+      "enabled": true,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 10 * * *",
+        "tz": "Asia/Kolkata"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "Send a Slack DM report of assigned Linear tickets created yesterday and currently in status exactly Todo, including count and list.",
+        "timeoutSeconds": 600
+      }
+    }
+  ]
+}

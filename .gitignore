@@ -1,0 +1,24 @@
+# Secrets + local env
+.env
+.env.local
+workspace/.env
+workspace/.env.local
+
+# Python / Node build artefacts
+__pycache__/
+*.pyc
+node_modules/
+workspace/node_modules/
+workspace/agent-dashboard/node_modules/
+workspace/agent-dashboard/dist/
+
+# OS junk
+.DS_Store
+
+# Runtime state
+logs/
+workspace/logs/
+
+# Agent Builder internal pipeline state
+.builder/
+.pipeline/

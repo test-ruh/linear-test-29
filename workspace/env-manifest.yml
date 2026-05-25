@@ -1,0 +1,83 @@
+infrastructure:
+  - key: PG_CONNECTION_STRING
+    label: Postgres connection string
+    required: false
+    secret: true
+    platform_managed: true
+    description: "Platform-managed database connection string."
+  - key: ORG_ID
+    label: Organization ID
+    required: false
+    secret: false
+    platform_managed: true
+    description: "Platform-managed organization identifier."
+  - key: AGENT_ID
+    label: Agent ID
+    required: false
+    secret: false
+    platform_managed: true
+    description: "Platform-managed agent identifier."
+  - key: RUN_ID
+    label: Run ID
+    required: false
+    secret: false
+    platform_managed: true
+    description: "Platform-managed run identifier."
+connector:
+  - key: LINEAR_API_KEY
+    label: Linear API key
+    required: true
+    secret: true
+    platform_managed: false
+    description: Used to read your assigned Linear tickets and ticket details for reminders and the daily report.
+    how_to_get_steps:
+      - "Open https://linear.app in your browser and sign in."
+      - "Click your workspace name, then open Settings."
+      - "Open the 'API' or developer access section."
+      - Create a personal API key or copy an existing one.
+      - Copy the API key and paste it into the field above.
+    site_url: "https://linear.app"
+    provider_doc_url: "https://developers.linear.app"
+  - key: SLACK_BOT_TOKEN
+    label: Slack bot token
+    required: true
+    secret: true
+    platform_managed: false
+    description: Used to send Slack direct messages for reminders and the daily report.
+    how_to_get_steps:
+      - "Open https://api.slack.com/apps in your browser and sign in."
+      - "Click 'Create New App' or open the app you want to use."
+      - "Open 'OAuth & Permissions' in the left menu."
+      - Install or reinstall the app to your workspace if needed.
+      - "Copy the 'Bot User OAuth Token' value and paste it into the field above."
+    site_url: "https://slack.com"
+    provider_doc_url: "https://api.slack.com"
+  - key: SLACK_USER_ID
+    label: Slack user ID
+    required: true
+    secret: false
+    platform_managed: false
+    description: The Slack user ID that should receive the direct messages.
+    how_to_get_steps:
+      - "Open https://slack.com/app_redirect?channel=@me in your browser and sign in."
+      - Open your own Slack profile in the workspace.
+      - "Click the three-dot menu and choose 'Copy member ID' if available."
+      - "If you do not see it, ask a workspace admin to copy your member ID."
+      - Copy the Slack user ID and paste it into the field above.
+    site_url: "https://slack.com"
+    provider_doc_url: "https://api.slack.com/messaging/sending"
+channel:
+  - key: SLACK_BOT_TOKEN
+    label: Slack DM bot token
+    required: true
+    secret: true
+    platform_managed: false
+    description: Used by the agent to send Slack direct messages to you only.
+    how_to_get_steps:
+      - "Open https://api.slack.com/apps in your browser and sign in."
+      - "Click 'Create New App' or open the app you want to use."
+      - "Open 'OAuth & Permissions' in the left menu."
+      - Install or reinstall the app to your workspace if needed.
+      - "Copy the 'Bot User OAuth Token' value and paste it into the field above."
+    site_url: "https://slack.com"
+    provider_doc_url: "https://api.slack.com"

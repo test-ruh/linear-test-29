@@ -1,0 +1,12 @@
+{
+  "id": "send-slack-dm",
+  "requires": {
+    "bins": ["bash", "python3", "curl"],
+    "env": ["SLACK_BOT_TOKEN", "RUN_ID"]
+  },
+  "inputPath": "/tmp/format-slack-reminder_${RUN_ID}.json",
+  "outputPath": "/tmp/send-slack-dm_${RUN_ID}.json",
+  "dependsOn": ["format-slack-reminder", "format-slack-daily-report"],
+  "dbWrites": [],
+  "forbidden": ["raw_sql", "hardcoded_secret"]
+}

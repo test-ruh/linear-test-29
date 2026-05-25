@@ -1,0 +1,12 @@
+{
+  "id": "fetch-linear-todo-tickets",
+  "requires": {
+    "bins": ["bash", "python3", "curl"],
+    "env": ["LINEAR_API_KEY", "RUN_ID"]
+  },
+  "inputPath": "/tmp/trigger_context_${RUN_ID}.json",
+  "outputPath": "/tmp/fetch-linear-todo-tickets_${RUN_ID}.json",
+  "dependsOn": [],
+  "dbWrites": [],
+  "forbidden": ["raw_sql", "hardcoded_secret"]
+}

@@ -1,0 +1,37 @@
+name: main
+args:
+  run_id:
+    default: $(uuidgen)
+env:
+  RUN_ID: ${run_id}
+  PG_CONNECTION_STRING: ${PG_CONNECTION_STRING}
+  ORG_ID: ${ORG_ID}
+  AGENT_ID: ${AGENT_ID}
+steps:
+  - id: provision-schema
+    run: python3 scripts/data_writer.py provision
+    timeout_ms: 30000
+  - id: fetch_linear_todo_tickets_reminder
+    run: bash skills/fetch-linear-todo-tickets/scripts/run.sh
+    stdin: "{\"trigger_id\":\"linear-todo-reminder\",\"run_type\":\"reminder\",\"scope\":\"requester_only\",\"status\":\"Todo\",\"channel\":\"slack_dm\",\"slack_user_id\":\"${SLACK_USER_ID}\"}"
+    when: "${trigger.name == 'linear-todo-reminder'}"
+  - id: format_slack_reminder
+    run: bash skills/format-slack-reminder/scripts/run.sh
+    stdin: $fetch_linear_todo_tickets_reminder
+    when: "${trigger.name == 'linear-todo-reminder'}"
+  - id: send_slack_dm_reminder
+    run: bash skills/send-slack-dm/scripts/run.sh
+    stdin: $format_slack_reminder
+    when: "${trigger.name == 'linear-todo-reminder'}"
+  - id: fetch_linear_todo_tickets_daily_report
+    run: bash skills/fetch-linear-todo-tickets/scripts/run.sh
+    stdin: "{\"trigger_id\":\"linear-todo-daily-report\",\"run_type\":\"daily_report\",\"scope\":\"requester_only\",\"status\":\"Todo\",\"channel\":\"slack_dm\",\"date_window\":\"yesterday\",\"slack_user_id\":\"${SLACK_USER_ID}\"}"
+    when: "${trigger.name == 'linear-todo-daily-report'}"
+  - id: format_slack_daily_report
+    run: bash skills/format-slack-daily-report/scripts/run.sh
+    stdin: $fetch_linear_todo_tickets_daily_report
+    when: "${trigger.name == 'linear-todo-daily-report'}"
+  - id: send_slack_dm_daily_report
+    run: bash skills/send-slack-dm/scripts/run.sh
+    stdin: $format_slack_daily_report
+    when: "${trigger.name == 'linear-todo-daily-report'}"
