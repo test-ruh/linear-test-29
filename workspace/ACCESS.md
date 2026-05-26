@@ -6,43 +6,41 @@
 
 | Team               | Access Level | Members (approx) |
 |--------------------|-------------|-------------------|
-| Requester | recipient | The single requester who receives the Slack DMs. |
-| Automation Operators | maintainer | Authorized maintainers who manage secrets and runtime deployment. |
+| Requester | operator | Single approved requester only |
+| Platform Admins | maintainer | OpenClaw workspace maintainers |
 
 ### Restricted From
 
 | Team / Role          | Reason                          |
 |----------------------|---------------------------------|
-| General workspace members | This agent is requester-only and does not post to channels or support other recipients. |
-| Linear writers | The agent is read-only toward Linear and cannot modify ticket state. |
+| Other workspace members | The approved scope supports only the requester and only Slack DM delivery to that requester. |
 
 ## HiTL Approvers
 
 | Skill                | Action                         | Approver             | Fallback Approver    |
 |----------------------|--------------------------------|----------------------|----------------------|
-| send-slack-dm | Send approved scheduled Slack DM to the requester | No human approval required for the confirmed unattended MVP | Pause the schedule if outbound delivery should stop |
+| None | No HiTL steps — fully automated | N/A | N/A |
 
 ## Model Configuration
 
 | Field                | Value                          |
 |----------------------|--------------------------------|
-| **Primary Model**    | gpt-4.1   |
-| **Fallback Model**   | gpt-4.1-mini  |
+| **Primary Model**    | gpt-5   |
+| **Fallback Model**   | gpt-4.1  |
 
 ## Token Budget
 
 | Field                  | Value                  |
 |------------------------|------------------------|
-| **Monthly Budget**     | 150000 tokens |
-| **Alert Threshold**    | 120000 tokens |
+| **Monthly Budget**     | 250000 tokens |
+| **Alert Threshold**    | 200000 tokens |
 | **Auto-Pause on Limit**| No |
 
 ## Security & Permissions
 
 | Permission                         | Allowed    |
 |------------------------------------|------------|
-| Read Linear tickets | ✅ |
-| Write Linear tickets | ❌ |
-| Send Slack direct messages | ✅ |
-| Send Slack channel messages | ❌ |
-| Write application database tables | ❌ |
+| Read Linear tickets assigned to requester | ✅ |
+| Send Slack direct messages to requester | ✅ |
+| Modify Linear tickets | ❌ |
+| Send to Slack channels or other recipients | ❌ |

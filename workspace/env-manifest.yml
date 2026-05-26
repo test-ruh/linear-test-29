@@ -1,10 +1,4 @@
 infrastructure:
-  - key: PG_CONNECTION_STRING
-    label: Postgres connection string
-    required: false
-    secret: true
-    platform_managed: true
-    description: "Platform-managed database connection string."
   - key: ORG_ID
     label: Organization ID
     required: false

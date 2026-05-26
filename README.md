@@ -1,6 +1,6 @@
 # 🎫 Linear Todo Notifier
 
-Checks your assigned Linear Todo tickets every 30 minutes and sends Slack DM reminders, plus a daily 10:00 AM IST report for yesterday-created Todo tickets.
+Checks your assigned Linear Todo tickets every 30 minutes and sends Slack DM reminders, plus a daily 10 AM IST report of the previous day’s Todo tickets.
 
 ## Quick Start
 
@@ -56,7 +56,7 @@ openclaw cron runs                # see run history
 | `result-query` | User-invocable | Read stored records from the agent result tables for inspection and follow-up questions. |
 | `github-action` | User-invocable | Git branch + PR workflow for syncing agent changes to GitHub. Creates feature branches, commits changes, and opens pull requests against main. NEVER pushes to main directly. MANDATORY for every agent. |
 | `fetch-linear-todo-tickets` | Auto | Reads the requester's assigned Linear tickets with status exactly Todo, including created-at and other fields needed for Slack messages. |
-| `format-slack-reminder` | Auto | Builds a concise Slack DM reminder from matching Linear Todo tickets. |
+| `compose-slack-reminder-message` | Auto | Builds a concise Slack DM reminder from matching Linear Todo tickets. |
 | `format-slack-daily-report` | Auto | Builds the 10:00 AM IST Slack DM report with a count and list of yesterday-created Todo tickets. |
 | `send-slack-dm` | Auto | Sends the reminder or daily report to the requester by Slack direct message. |
 

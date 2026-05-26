@@ -1,11 +1,11 @@
 {
-  "id": "format-slack-reminder",
+  "id": "compose-slack-reminder-message",
   "requires": {
     "bins": ["bash", "python3"],
     "env": ["RUN_ID"]
   },
   "inputPath": "/tmp/fetch-linear-todo-tickets_${RUN_ID}.json",
-  "outputPath": "/tmp/format-slack-reminder_${RUN_ID}.json",
+  "outputPath": "/tmp/compose-slack-reminder-message_${RUN_ID}.json",
   "dependsOn": ["fetch-linear-todo-tickets"],
   "dbWrites": [],
   "forbidden": ["raw_sql", "hardcoded_secret"]

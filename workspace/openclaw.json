@@ -1,21 +1,21 @@
 {
   "name": "linear-todo-notifier",
   "version": "1.0.0",
-  "description": "Checks your assigned Linear Todo tickets every 30 minutes and sends Slack DM reminders, plus a daily 10:00 AM IST report for yesterday-created Todo tickets.",
+  "description": "Checks your assigned Linear Todo tickets every 30 minutes and sends Slack DM reminders, plus a daily 10 AM IST report of the previous day’s Todo tickets.",
   "agent_metadata": {
     "agent_name": "linear-todo-notifier",
     "agent_id": "linear-todo-notifier",
     "avatar": "🎫",
-    "tone": "Clear, concise, reminder-oriented, practical",
-    "domain": "Personal productivity automation for Linear and Slack",
-    "primary_users": "The requester only",
+    "tone": "Clear, concise, reminder-oriented, and practical.",
+    "domain": "Productivity automation",
+    "primary_users": "The requester only.",
     "automation_type": "scheduled",
-    "schedule_description": "Every 30 minutes for reminders, plus a daily report at 10:00 AM IST.",
+    "schedule_description": "Every 30 minutes for reminders, plus daily at 10:00 AM IST for the yesterday-created Todo report.",
     "cron_expression": "*/30 * * * *; 0 10 * * * (Asia/Kolkata)"
   },
   "skills": [
     "fetch-linear-todo-tickets",
-    "format-slack-reminder",
+    "compose-slack-reminder-message",
     "format-slack-daily-report",
     "send-slack-dm"
   ],

@@ -16,7 +16,7 @@ steps:
     stdin: "{\"trigger_id\":\"linear-todo-reminder\",\"run_type\":\"reminder\",\"scope\":\"requester_only\",\"status\":\"Todo\",\"channel\":\"slack_dm\",\"slack_user_id\":\"${SLACK_USER_ID}\"}"
     when: "${trigger.name == 'linear-todo-reminder'}"
   - id: format_slack_reminder
-    run: bash skills/format-slack-reminder/scripts/run.sh
+    run: bash skills/compose-slack-reminder-message/scripts/run.sh
     stdin: $fetch_linear_todo_tickets_reminder
     when: "${trigger.name == 'linear-todo-reminder'}"
   - id: send_slack_dm_reminder

@@ -2,7 +2,7 @@
 set -euo pipefail
 
 INPUT_FILE="${INPUT_FILE:-/dev/stdin}"
-OUTPUT_FILE="${OUTPUT_FILE:-/tmp/format-slack-reminder_${RUN_ID}.json}"
+OUTPUT_FILE="${OUTPUT_FILE:-/tmp/compose-slack-reminder-message_${RUN_ID}.json}"
 PROJECT_ROOT="${PROJECT_ROOT:-$(pwd)}"
 
 python3 - "$INPUT_FILE" "$OUTPUT_FILE" <<'PY'
